@@ -5,3 +5,7 @@ html, body {
     width: 100vw;
     overflow: hidden;
 }
+
+#drawing-canvas {
+    cursor: crosshair;
+}
