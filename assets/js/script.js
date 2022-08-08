@@ -39,10 +39,19 @@ const mouseUp = () => {
 const draw = e => {
         // -50 takes into account the 50px header
     if (isDrawing) {
-        ctx.lineTo(e.clientX, e.clientY - 50);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(e.clientX, e.clientY - 50);
+        if (e.touches) {
+            const touch = e.touches[0];
+
+            ctx.lineTo(touch.clientX, touch.clientY - 50);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(touch.clientX, touch.clientY - 50);
+        } else {
+            ctx.lineTo(e.clientX, e.clientY - 50);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(e.clientX, e.clientY - 50);
+        };
     };
 };
 
@@ -50,6 +59,10 @@ const draw = e => {
 canvas.addEventListener('mousedown', mouseDown);
 canvas.addEventListener('mouseup', mouseUp);
 canvas.addEventListener('mousemove', draw);
+
+canvas.addEventListener('touchstart', mouseDown);
+canvas.addEventListener('touchend', mouseUp);
+canvas.addEventListener('touchmove', draw);
 
 resetBtn.addEventListener('click', () => window.location.reload());
 
