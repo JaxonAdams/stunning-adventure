@@ -3,7 +3,8 @@ const canvas = document.querySelector('#drawing-canvas');
 
 // set canvas size
 const docWidth = document.body.clientWidth;
-const docHeight = document.body.clientHeight;
+    // -50 takes into account the 50px header
+const docHeight = document.body.clientHeight - 50;
 canvas.height = docHeight;
 canvas.width = docWidth;
 
@@ -30,11 +31,12 @@ const mouseUp = () => {
 
 // draw when mouse is down and moving
 const draw = e => {
+        // -50 takes into account the 50px header
     if (isDrawing) {
-        ctx.lineTo(e.clientX, e.clientY);
+        ctx.lineTo(e.clientX, e.clientY - 50);
         ctx.stroke();
         ctx.beginPath();
-        ctx.moveTo(e.clientX, e.clientY);
+        ctx.moveTo(e.clientX, e.clientY - 50);
     };
 };
 
