@@ -10,19 +10,25 @@ canvas.width = docWidth;
 // set up drawing object
 const ctx = canvas.getContext('2d');
 
+// line properties
+ctx.lineWidth = 10;
+ctx.lineCap = 'round';
+ctx.strokeStyle = 'black';
+
 // is user drawing (false by default)
 let isDrawing = false;
 
 // mouse down/up functions
-const mouseDown = e => {
+const mouseDown = () => {
     isDrawing = true;
-    ctx.beginPath();
 };
 
 const mouseUp = () => {
     isDrawing = false;
+    ctx.beginPath();
 };
 
+// draw when mouse is down and moving
 const draw = e => {
     if (isDrawing) {
         ctx.lineTo(e.clientX, e.clientY);
