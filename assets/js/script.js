@@ -37,6 +37,7 @@ const mouseUp = () => {
 
 // draw when mouse is down and moving
 const draw = e => {
+    e.preventDefault();
         // -50 takes into account the 50px header
     if (isDrawing) {
         if (e.touches) {
